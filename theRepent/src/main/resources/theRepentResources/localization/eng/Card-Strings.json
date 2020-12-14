@@ -1,0 +1,96 @@
+{
+  "theRepent:CausticAcid": {
+    "NAME": "Caustic Acid",
+    "DESCRIPTION": "The target will take !M! hp damage from each excess therepent:acid not spent on damaging block, and increase therepent:acid decay to 2 per turn."
+  },
+  "theRepent:QuickenDeath": {
+    "NAME": "Quicken Death",
+    "DESCRIPTION": "therepent:trigger all the following powers !M! times and then consume them: therepent:bleed, therepent:acid, poison, therepent:redemption. therepent:redemption is not consumed. Exhausts."
+  },
+  "theRepent:SerratedEdge": {
+    "NAME": "Serrated Edge",
+    "DESCRIPTION": "Apply therepent:bleed equal to third of unblocked attack damage.",
+    "UPGRADE_DESCRIPTION": "Apply therepent:bleed equal to third of unblocked attack damage. innate."
+  },
+  "theRepent:Bleedout": {
+    "NAME": "Bleedout",
+    "DESCRIPTION": "therepent:trigger therepent:bleed once on target."
+  },
+  "theRepent:BloodDetonation": {
+    "NAME": "Blood Detonation",
+    "DESCRIPTION": "Deal damage equal to half therepent:bleed and consume that much therepent:bleed."
+  },
+  "theRepent:NeedleStorm": {
+    "NAME": "Needle Storm",
+    "DESCRIPTION": "Deal 1 therepent:piercing damage !M! times to a random enemy. Exhausts."
+  },
+  "theRepent:AcidSplash": {
+    "NAME": "Acid Splash",
+    "DESCRIPTION": "Apply !M! therepent:acid to all enemies."
+  },
+  "theRepent:ArterialBleeding": {
+    "NAME": "Arterial Bleeding",
+    "DESCRIPTION": "Change the therepent:bleed decay of a target to therepent:bleed growth for !M! turns. Exhausts."
+  },
+  "theRepent:SaintsProtection": {
+    "NAME": "Saints Protection",
+    "DESCRIPTION": "Convert all your therepent:virtue to temporary hp. Exhausts."
+  },
+  "theRepent:Repentance": {
+    "NAME": "Repentance",
+    "DESCRIPTION": "Convert all therepent:sin on yourself to therepent:virtue."
+  },
+  "theRepent:CarrySins": {
+    "NAME": "Carry Sins",
+    "DESCRIPTION": "Transfer all targets therepent:sin to you, and apply to it therepent:redemption equal to half the sin transferred (rounded up).",
+    "UPGRADE_DESCRIPTION": "Transfer all targets therepent:sin to you, and apply to it therepent:redemption equal to half the sin transferred (rounded up). retain."
+  },
+  "theRepent:DipVenom": {
+    "NAME": "Dip in Venom",
+    "DESCRIPTION": "Gain !M! therepent:envenom until the end of this turn."
+  },
+  "theRepent:Mercy":  {
+    "NAME": "Mercy",
+    "DESCRIPTION": "Each time you heal another, gain half of the therepent:effective_heal amount (rounded down) as therepent:virtue."
+  },
+  "theRepent:Trespass": {
+    "NAME": "Trespass",
+    "DESCRIPTION": "Gain !B! block. When damage is blocked this turn, apply therepent:sin equal to damage blocked back to the attacker."
+  },
+  "theRepent:WeepingShadows": {
+    "NAME": "Weeping Shadows",
+    "DESCRIPTION": "Each time you apply a debuff gain !M! block."
+  },
+  "theRepent:Infect": {
+    "NAME": "Infect",
+    "DESCRIPTION": "Convert third (rounded up) of targets therepent:bleed to therepent:infection."
+  },
+  "theRepent:Pinprick": {
+    "NAME": "Pinprick",
+    "DESCRIPTION": "Deal 1 therepent:piercing damage and apply !M! therepent:bleed if target was poisoned and !theRepent:SecondMagic! poison if target was therepent:bleeding."
+  },
+  "theRepent:DrawDarts": {
+    "NAME": "Draw Darts",
+    "DESCRIPTION": "Add !M! dart cards to hand and draw one card."
+  },
+  "theRepent:MedicalPoisoning":  {
+    "NAME": "Medical Poisoning",
+    "DESCRIPTION": "Heal target for !M! hp and apply !theRepent:SecondMagic! poison to it."
+  },
+  "theRepent:Dart":  {
+    "NAME": "Dart",
+    "DESCRIPTION": "Deal !D! Damage. Exhausts."
+  },
+  "theRepent:Lacerate": {
+    "NAME": "Lacerate",
+    "DESCRIPTION": "Deal !D! damage and apply !M! therepent:bleed to target."
+  },
+  "theRepent:Stab": {
+    "NAME": "Stab",
+    "DESCRIPTION": "Deal !D! Damage."
+  },
+  "theRepent:Parry": {
+    "NAME": "Parry",
+    "DESCRIPTION": "Gain !B! Block."
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "PROPER_NAME": "Trigger",
+    "NAMES": [
+      "trigger"
+    ],
+    "DESCRIPTION": "Cause the specified powers to immediately apply their effect and decay."
+  },
+  {
+    "PROPER_NAME": "Piercing",
+    "NAMES": [
+      "piercing"
+    ],
+    "DESCRIPTION": "Deal damage while ignoring enemy block and your strength."
+  },
+  {
+    "PROPER_NAME": "Acid",
+    "NAMES": [
+      "acid"
+    ],
+    "DESCRIPTION": "Remove block at end of targets turn."
+  },
+  {
+    "PROPER_NAME": "Redemption",
+    "NAMES": [
+      "redemption"
+    ],
+    "DESCRIPTION": "Remove hp at start of targets turn."
+  },
+  {
+    "PROPER_NAME": "Envenom",
+    "NAMES": [
+      "envenom"
+    ],
+    "DESCRIPTION": ""
+  },
+  {
+    "PROPER_NAME": "Effective Heal",
+    "NAMES": [
+      "effective heal",
+      "effective_heal"
+    ],
+    "DESCRIPTION": "The amount of missing health restored, any heal beyond maxHp is ignored."
+  },
+  {
+    "PROPER_NAME": "Virtue",
+    "NAMES": [
+      "virtue"
+    ],
+    "DESCRIPTION": "Has no effect alone. Some cards use it to empower their effects."
+  },
+  {
+    "PROPER_NAME": "Sin",
+    "NAMES": [
+      "sin"
+    ],
+    "DESCRIPTION": "Has no effect alone. Some cards use it to empower their effects."
+  },
+  {
+    "PROPER_NAME": "Bleed",
+    "NAMES": [
+      "bleed",
+      "bleeding"
+    ],
+    "DESCRIPTION": "At end of targets turn, a third of bleed (rounded up) and that much hp is lost."
+  },
+  {
+    "PROPER_NAME": "Infection",
+    "NAMES": [
+      "infection"
+    ],
+    "DESCRIPTION": "When attacking, reduce damage by up to infection amount. at end of turn, lose infection equal to power of highest attack reduced"
+  }
+]

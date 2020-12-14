@@ -1,0 +1,11 @@
+{
+  "theRepent:RustedLocket": {
+    "NAME": "Rusted Locket",
+    "FLAVOR": "A memoir for your regrets.",
+    "DESCRIPTIONS": [
+      "Multiply all enemy hp by #b",
+      ". You gain #b",
+      "% of your max hp at end of combat."
+    ]
+  }
+}
