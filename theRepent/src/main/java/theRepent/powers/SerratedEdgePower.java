@@ -50,10 +50,11 @@ public class SerratedEdgePower extends AbstractPower implements CloneablePowerIn
         updateDescription();
     }
 
+    // TODO: unblocked damage only!
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
-            int bleedAmount = damageAmount * (this.amount / 3);
+            int bleedAmount = (int)Math.ceil((float)damageAmount * ((float)this.amount / 3f));
             if (bleedAmount > 0) {
                 this.flash();
                 this.addToTop(new ApplyPowerAction(target, this.owner, new BleedPower(target, this.owner, bleedAmount)));

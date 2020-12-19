@@ -57,6 +57,11 @@ public class BleedPower extends AbstractPower implements CloneablePowerInterface
             int loss = (int) Math.ceil(amount / 3.0);
             addToBot(new DamageAction(owner, new DamageInfo(source, loss, DamageInfo.DamageType.HP_LOSS)));
             flashWithoutSound();
+            if (owner.hasPower(SpreadingInfectionPower.POWER_ID)) {
+                AbstractPower spreadingInfection = owner.getPower(SpreadingInfectionPower.POWER_ID);
+                spreadingInfection.flashWithoutSound();
+                addToBot(new ApplyPowerAction(owner, source, new InfectionPower(owner, source, loss)));
+            }
             addToBot(new ReducePowerAction(owner, owner, POWER_ID, loss));
         }
     }

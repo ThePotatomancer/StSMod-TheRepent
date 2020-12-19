@@ -19,7 +19,6 @@ public class DefaultCustomVariable extends DynamicVariable
     }
 
     // Checks whether the current value is different than the base one. 
-    // For example, this will check whether your damage is modified (i.e. by strength) and color the variable appropriately (Green/Red).
     @Override
     public boolean isModified(AbstractCard card)
     {
@@ -27,7 +26,6 @@ public class DefaultCustomVariable extends DynamicVariable
     }
    
     // The value the variable should display.
-    // In our case, it displays the damage the card would do, multiplied by the amount of energy the player currently has.
     @Override
     public int value(AbstractCard card)
     {
@@ -35,7 +33,6 @@ public class DefaultCustomVariable extends DynamicVariable
     }
     
     // The baseValue the variable should display.
-    // just like baseBlock or baseDamage, this is what the variable should reset to by default. (the base value before any modifications)
     @Override
     public int baseValue(AbstractCard card)
     {   

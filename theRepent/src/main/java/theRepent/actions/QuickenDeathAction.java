@@ -3,6 +3,7 @@ package theRepent.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import theRepent.powers.RedemptionPower;
 
 import java.util.List;
@@ -32,6 +33,9 @@ public class QuickenDeathAction extends AbstractGameAction {
                 }
             }
             isDone = true;
+        }
+        else {
+            triggerAction.update();
         }
     }
 }

@@ -28,7 +28,6 @@ public class AcidSplash extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
 
     private static final int ACID = 4;
     private static final int UPGRADE_PLUS_ACID = 3;
@@ -58,7 +57,6 @@ public class AcidSplash extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_ACID);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

@@ -11,7 +11,7 @@ import theRepent.powers.BleedPower;
 
 import static theRepent.RepentMod.makeCardPath;
 
-public class ArterialBleeding extends AbstractDynamicCard {
+public class ArterialBleeding extends PowerConditionalCard {
 
     // TEXT DECLARATION
 
@@ -27,9 +27,9 @@ public class ArterialBleeding extends AbstractDynamicCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
+    private static final String CONDITIONAL_POWER_ID = BleedPower.POWER_ID;
 
     private static final int COST = 2;
-    private static final int UPGRADED_COST = 2;
 
     private static final int DURATION = 2;
     private static final int UPGRADE_PLUS_DURATION = 1;
@@ -38,7 +38,7 @@ public class ArterialBleeding extends AbstractDynamicCard {
 
 
     public ArterialBleeding() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, CONDITIONAL_POWER_ID);
         magicNumber = baseMagicNumber = DURATION;
         exhaust = true;
     }
@@ -50,40 +50,11 @@ public class ArterialBleeding extends AbstractDynamicCard {
                 new ApplyPowerAction(m, p, new ArterialBleedingPower(m, p, magicNumber)));
     }
 
-    public boolean cardPlayable(AbstractMonster m) {
-        if (m != null && m.hasPower(BleedPower.POWER_ID)) {
-            return super.cardPlayable(m);
-        }
-        else {
-            this.cantUseMessage = null;
-            return false;
-        }
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean anyMonsterHasBleed = false;
-        for(final AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (monster.hasPower(BleedPower.POWER_ID)) {
-                anyMonsterHasBleed = true;
-                break;
-            }
-        }
-
-        if (anyMonsterHasBleed) {
-            return super.canUse(p, m);
-        }
-        else {
-            return false;
-        }
-    }
-
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_DURATION);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

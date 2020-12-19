@@ -18,9 +18,16 @@ public class SetMaxHealthAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        float healthRatio = (float)target.maxHealth / (float)target.currentHealth;
-        target.maxHealth = newMaxHealth;
+        float healthRatio = (float)target.currentHealth / (float)target.maxHealth;
+        int healthDiff = newMaxHealth - target.maxHealth;
+        if (healthDiff > 0) {
+            target.increaseMaxHp(healthDiff, true);
+        }
+        else if (healthDiff < 0) {
+            target.decreaseMaxHealth(-healthDiff);
+        }
         target.currentHealth = (int)(healthRatio * target.maxHealth);
+        target.healthBarUpdatedEvent();
         isDone = true;
     }
 }

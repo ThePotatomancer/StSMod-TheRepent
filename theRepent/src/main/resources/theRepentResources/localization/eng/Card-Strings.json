@@ -1,11 +1,64 @@
 {
+  "theRepent:SpreadingInfection": {
+    "NAME": "Spreading Infection",
+    "DESCRIPTION": "Apply therepent:infection equal to therepent:bleed decay when therepent:bleed therepent:triggers for one turn.",
+    "UPGRADE_DESCRIPTION": "Apply therepent:infection equal to therepent:bleed decay when therepent:bleed therepent:triggers for !M! turns."
+  },
+  "theRepent:Stigmata": {
+    "NAME": "Stigmata",
+    "DESCRIPTION": "You gain virtue for every hp lost.",
+    "UPGRADE_DESCRIPTION": "You gain virtue for every hp lost. NL innate."
+  },
+  "theRepent:BlightedCut": {
+    "NAME": "Blighted Cut",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! therepent:infection."
+  },
+  "theRepent:BladeOfRuin": {
+    "NAME": "Blade of Ruin",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !theRepent:SecondMagic! therepent:bleed and !M! therepent:acid, poison and therepent:infection."
+  },
+  "theRepent:Purification": {
+    "NAME": "Purification",
+    "DESCRIPTION": "You may exhaust cards from your hand by spending !M! therepent:virtue. NL For each card exhausted this way gain !B! block."
+  },
+  "theRepent:Virulence": {
+    "NAME": "Virulence",
+    "DESCRIPTION": "Reduce therepent:infection by half. NL Apply that much therepent:infection to all other enemies.",
+    "UPGRADE_DESCRIPTION": "Reduce therepent:infection by half. NL Apply that much therepent:infection to all other enemies. NL Apply !M! therepent:infection to target.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #yinfection",
+      "The enemy must have #yinfection"
+    ]
+  },
+  "theRepent:ParalyticPoison": {
+    "NAME": "Paralytic Poison",
+    "DESCRIPTION": "Modify poison with !M! therepent:paralytic_poison. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Modify poison with !M! therepent:paralytic_poison. Then apply !theRepent:SecondMagic! more poison. Exhausts.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ypoison",
+      "The enemy must have #ypoison"
+    ]
+  },
+  "theRepent:StoicWill": {
+    "NAME": "Stoic Will",
+    "DESCRIPTION": "Discard all status effects in hand. NL Draw a card for each status effect discarded this way.",
+    "UPGRADE_DESCRIPTION": "Discard all status effects in hand. NL Draw a card for each status effect discarded this way. NL draw a card."
+  },
+  "theRepent:AcidicStrike": {
+    "NAME": "Acidic Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! acid."
+  },
   "theRepent:CausticAcid": {
     "NAME": "Caustic Acid",
-    "DESCRIPTION": "The target will take !M! hp damage from each excess therepent:acid not spent on damaging block, and increase therepent:acid decay to 2 per turn."
+    "DESCRIPTION": "therepent:modify therepent:acid - target will take !M! hp damage from each excess therepent:acid not spent on damaging block, and increase therepent:acid decay by !M! per turn. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #yacid",
+      "The enemy must have #yacid"
+    ]
   },
   "theRepent:QuickenDeath": {
     "NAME": "Quicken Death",
-    "DESCRIPTION": "therepent:trigger all the following powers !M! times and then consume them: therepent:bleed, therepent:acid, poison, therepent:redemption. therepent:redemption is not consumed. Exhausts."
+    "DESCRIPTION": "therepent:trigger therepent:bleed, therepent:acid, therepent:redemption, and poison !M! times. NL Consume therepent:bleed, therepent:acid and poison. NL Exhaust."
   },
   "theRepent:SerratedEdge": {
     "NAME": "Serrated Edge",
@@ -14,23 +67,36 @@
   },
   "theRepent:Bleedout": {
     "NAME": "Bleedout",
-    "DESCRIPTION": "therepent:trigger therepent:bleed once on target."
+    "DESCRIPTION": "therepent:trigger therepent:bleed once on target.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ybleed",
+      "The enemy must have #ybleed"
+    ]
   },
   "theRepent:BloodDetonation": {
     "NAME": "Blood Detonation",
-    "DESCRIPTION": "Deal damage equal to half therepent:bleed and consume that much therepent:bleed."
+    "DESCRIPTION": "Deal damage equal to half therepent:bleed. NL Consume half of therepent:bleed.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Deal damage equal to half therepent:bleed. NL Consume half of therepent:bleed.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ybleed",
+      "The enemy must have #ybleed"
+    ]
   },
   "theRepent:NeedleStorm": {
     "NAME": "Needle Storm",
-    "DESCRIPTION": "Deal 1 therepent:piercing damage !M! times to a random enemy. Exhausts."
+    "DESCRIPTION": "Deal 1 therepent:piercing damage !M! times to a random enemy. NL Exhaust."
   },
   "theRepent:AcidSplash": {
     "NAME": "Acid Splash",
-    "DESCRIPTION": "Apply !M! therepent:acid to all enemies."
+    "DESCRIPTION": "Apply !M! therepent:acid to ALL enemies."
   },
   "theRepent:ArterialBleeding": {
     "NAME": "Arterial Bleeding",
-    "DESCRIPTION": "Change the therepent:bleed decay of a target to therepent:bleed growth for !M! turns. Exhausts."
+    "DESCRIPTION": "therepent:modify therepent:bleed - therepent:bleed decay of a target is converted to therepent:bleed growth for !M! turns. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ybleed",
+      "The enemy must have #ybleed"
+    ]
   },
   "theRepent:SaintsProtection": {
     "NAME": "Saints Protection",
@@ -43,7 +109,11 @@
   "theRepent:CarrySins": {
     "NAME": "Carry Sins",
     "DESCRIPTION": "Transfer all targets therepent:sin to you, and apply to it therepent:redemption equal to half the sin transferred (rounded up).",
-    "UPGRADE_DESCRIPTION": "Transfer all targets therepent:sin to you, and apply to it therepent:redemption equal to half the sin transferred (rounded up). retain."
+    "UPGRADE_DESCRIPTION": "Transfer all targets therepent:sin to you, and apply to it therepent:redemption equal to half the sin transferred (rounded up). retain.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ysin",
+      "The enemy must have #ysin"
+    ]
   },
   "theRepent:DipVenom": {
     "NAME": "Dip in Venom",
@@ -51,11 +121,12 @@
   },
   "theRepent:Mercy":  {
     "NAME": "Mercy",
-    "DESCRIPTION": "Each time you heal another, gain half of the therepent:effective_heal amount (rounded down) as therepent:virtue."
+    "DESCRIPTION": "Each time you heal another, gain half of the therepent:effective_heal amount (rounded down) as therepent:virtue.",
+    "UPGRADE_DESCRIPTION": "Each time you heal another, gain half of the therepent:effective_heal amount (rounded down) as therepent:virtue. retain."
   },
   "theRepent:Trespass": {
     "NAME": "Trespass",
-    "DESCRIPTION": "Gain !B! block. When damage is blocked this turn, apply therepent:sin equal to damage blocked back to the attacker."
+    "DESCRIPTION": "Gain !B! block. When damage is blocked this turn, apply therepent:sin equal to half damage blocked back to the attacker (rounded down)."
   },
   "theRepent:WeepingShadows": {
     "NAME": "Weeping Shadows",
@@ -63,27 +134,31 @@
   },
   "theRepent:Infect": {
     "NAME": "Infect",
-    "DESCRIPTION": "Convert third (rounded up) of targets therepent:bleed to therepent:infection."
+    "DESCRIPTION": "Convert third (rounded up) of targets therepent:bleed to therepent:infection.",
+    "EXTENDED_DESCRIPTION": [
+      "An enemy must have #ybleed",
+      "The enemy must have #ybleed"
+    ]
   },
   "theRepent:Pinprick": {
     "NAME": "Pinprick",
-    "DESCRIPTION": "Deal 1 therepent:piercing damage and apply !M! therepent:bleed if target was poisoned and !theRepent:SecondMagic! poison if target was therepent:bleeding."
+    "DESCRIPTION": "Deal 1 therepent:piercing damage. NL apply !M! therepent:bleed if target was poisoned. NL apply !theRepent:SecondMagic! poison if target was therepent:bleeding."
   },
   "theRepent:DrawDarts": {
     "NAME": "Draw Darts",
-    "DESCRIPTION": "Add !M! dart cards to hand and draw one card."
+    "DESCRIPTION": "Add !M! dart cards to hand. NL draw one card."
   },
   "theRepent:MedicalPoisoning":  {
     "NAME": "Medical Poisoning",
-    "DESCRIPTION": "Heal target for !M! hp and apply !theRepent:SecondMagic! poison to it."
+    "DESCRIPTION": "Heal target for !M! hp. NL apply !theRepent:SecondMagic! poison."
   },
   "theRepent:Dart":  {
     "NAME": "Dart",
-    "DESCRIPTION": "Deal !D! Damage. Exhausts."
+    "DESCRIPTION": "Deal !D! Damage. NL Exhaust."
   },
   "theRepent:Lacerate": {
     "NAME": "Lacerate",
-    "DESCRIPTION": "Deal !D! damage and apply !M! therepent:bleed to target."
+    "DESCRIPTION": "Deal !D! damage. NL apply !M! therepent:bleed."
   },
   "theRepent:Stab": {
     "NAME": "Stab",

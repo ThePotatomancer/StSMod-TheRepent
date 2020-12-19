@@ -73,7 +73,8 @@ public class AcidPower extends AbstractPower implements CloneablePowerInterface,
         } else {
             int loss = 1;
             if (owner.hasPower(CausticAcidPower.POWER_ID)) {
-                loss++;
+                AbstractPower modifier = owner.getPower(CausticAcidPower.POWER_ID);
+                loss += modifier.amount;
             }
             this.addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, loss));
         }

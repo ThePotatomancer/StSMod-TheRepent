@@ -28,7 +28,6 @@ public class NeedleStorm extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 2;
-    private static final int UPGRADED_COST = 2;
 
     private static final int DAMAGE = 1;
     private static final int ATTACKS = 5;
@@ -60,7 +59,6 @@ public class NeedleStorm extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_ATTACKS);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

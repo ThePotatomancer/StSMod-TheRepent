@@ -10,6 +10,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -20,22 +21,18 @@ import theRepent.characters.TheRepent;
 import theRepent.potions.CorrosiveAcidPotion;
 import theRepent.relics.RustedLocket;
 import theRepent.util.IDCheckDontTouchPls;
+import theRepent.util.Keywords;
 import theRepent.util.TextureLoader;
 import theRepent.variables.DefaultCustomVariable;
 import theRepent.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
-
-/*
- * Use it to make your own mod of any type. - If you want to add any standard in-game content (character,
- * cards, relics), this is a good starting point.
- * It features 1 character with a minimal set of things: 1 card of each type, 1 debuff, couple of relics, etc.
- * If you're new to modding, you basically *need* the BaseMod wiki for whatever you wish to add
- * https://github.com/daviscook477/BaseMod/wiki - work your way through with this base.
- */
 
 @SpireInitializer
 public class RepentMod implements
@@ -97,7 +94,11 @@ public class RepentMod implements
     // Atlas and JSON files for the Animations
     public static final String THE_DEFAULT_SKELETON_ATLAS = "theRepentResources/images/char/defaultCharacter/skeleton.atlas";
     public static final String THE_DEFAULT_SKELETON_JSON = "theRepentResources/images/char/defaultCharacter/skeleton.json";
-    
+
+    // Localization
+    private static final String LOCALIZATION_FOLDER = "Resources/localization/";
+    private static String localLanguage;
+
     // =============== MAKE IMAGE PATHS =================
     
     public static String makeCardPath(String resourcePath) {
@@ -286,7 +287,7 @@ public class RepentMod implements
     public void receiveEditPotions() {
         logger.info("Beginning to edit potions");
         
-        // Class Specific Potion. If you want your potion to not be class-specific,
+        // If you want your potion to not be class-specific,
         // just remove the player class at the end
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(CorrosiveAcidPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, CorrosiveAcidPotion.POTION_ID, TheRepent.Enums.THE_REPENT);
@@ -332,12 +333,7 @@ public class RepentMod implements
         BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
         
         logger.info("Adding cards");
-        // Add the cards
-        // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash
-        // when generating card rewards/shop screen items.
 
-        // This method automatically adds any cards inside the cards package, found under yourModName.cards.
-        // For more specific info, including how to exclude classes from being added:
         // https://github.com/daviscook477/BaseMod/wiki/AutoAdd
 
         // The ID for this function isn't actually your modid as used for prefixes/by the getModID() method.
@@ -359,10 +355,42 @@ public class RepentMod implements
     
     
     // ================ LOAD THE TEXT ===================
+
+    private void loadLanguageAsNeeded() {
+        if (localLanguage != null) {
+            return;
+        }
+        logger.info("Determining Language for TheRepent");
+        switch (Settings.language) {
+            case DEU:
+            case EPO:
+            case FRA:
+            case GRE:
+            case IND:
+            case ITA:
+            case JPN:
+            case KOR:
+            case NOR:
+            case POL:
+            case PTB:
+            case RUS:
+            case SPA:
+            case SRB:
+            case SRP:
+            case THA:
+            case TUR:
+            case UKR:
+            case WWW:
+            case ZHS:
+            case ZHT:
+            default:
+                localLanguage = "eng/";
+                break;
+        }
+    }
     
     @Override
     public void receiveEditStrings() {
-        logger.info("You seeing this?");
         logger.info("Beginning to edit strings for mod with ID: " + getModID());
         
         // CardStrings
@@ -400,7 +428,7 @@ public class RepentMod implements
     
     // ================ LOAD THE KEYWORDS ===================
     
-    @Override
+    /*@Override
     public void receiveEditKeywords() {
         // Keywords on cards are supposed to be Capitalized, while in Keyword-String.json they're lowercase
         //
@@ -417,9 +445,31 @@ public class RepentMod implements
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(getModID().toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-                //  getModID().toLowerCase() makes your keyword mod specific (it won't show up in other cards that use that word)
             }
         }
+    }*/
+
+    @Override
+    public void receiveEditKeywords() {
+        loadLanguageAsNeeded();
+
+        logger.info("Adding Keywords for TheRepent");
+        // Based on MadScienceMod solution
+        Type typeToken = new TypeToken<Map<String, Keyword>>() {}.getType();
+        Gson gson = new Gson();
+        String json = loadJson(getModID() + LOCALIZATION_FOLDER + localLanguage + "Keyword-Strings.json");
+        Map<String, Keyword> keywords = gson.fromJson(json, typeToken);
+        for (Map.Entry<String, Keyword> entry : keywords.entrySet()) {
+            Keyword kw = entry.getValue();
+            BaseMod.addKeyword(getModID().toLowerCase(),
+                    kw.PROPER_NAME, kw.NAMES, kw.DESCRIPTION);
+            Keywords.langMap.put(entry.getKey().toLowerCase(Locale.ROOT), kw.NAMES[0]);
+        }
+    }
+
+    // Copied from MadScienceMod
+    private static String loadJson(String jsonPath) {
+        return Gdx.files.internal(jsonPath).readString(String.valueOf(StandardCharsets.UTF_8));
     }
     
     // ================ /LOAD THE KEYWORDS/ ===================

@@ -1,40 +1,49 @@
-[
-  {
+{
+  "Paralytic_poison": {
+    "PROPER_NAME": "Paralytic Poison",
+    "NAMES": [
+      "paralytic poison",
+      "paralytic_poison"
+    ],
+    "DESCRIPTION": "Reduce strength and dexterity for each stack. Increase stack by 1 each turn. Increase poison decay by stacks / 2 rounded down."
+  },
+  "trigger": {
     "PROPER_NAME": "Trigger",
     "NAMES": [
-      "trigger"
+      "trigger",
+      "triggers"
     ],
     "DESCRIPTION": "Cause the specified powers to immediately apply their effect and decay."
   },
-  {
+  "piercing": {
     "PROPER_NAME": "Piercing",
     "NAMES": [
       "piercing"
     ],
     "DESCRIPTION": "Deal damage while ignoring enemy block and your strength."
   },
-  {
+  "acid": {
     "PROPER_NAME": "Acid",
     "NAMES": [
       "acid"
     ],
     "DESCRIPTION": "Remove block at end of targets turn."
   },
-  {
+  "redemption": {
     "PROPER_NAME": "Redemption",
     "NAMES": [
       "redemption"
     ],
     "DESCRIPTION": "Remove hp at start of targets turn."
   },
-  {
+  "envenom": {
     "PROPER_NAME": "Envenom",
     "NAMES": [
       "envenom"
     ],
     "DESCRIPTION": ""
   },
-  {
+  "effective_heal": {
     "PROPER_NAME": "Effective Heal",
     "NAMES": [
       "effective heal",
@@ -42,21 +51,28 @@
     ],
     "DESCRIPTION": "The amount of missing health restored, any heal beyond maxHp is ignored."
   },
-  {
+  "modify": {
+    "PROPER_NAME": "Modify",
+    "NAMES": [
+      "modify"
+    ],
+    "DESCRIPTION": "Change behavior of another debuff. Modification will be removed if modified power is removed."
+  },
+  "virtue": {
     "PROPER_NAME": "Virtue",
     "NAMES": [
       "virtue"
     ],
     "DESCRIPTION": "Has no effect alone. Some cards use it to empower their effects."
   },
-  {
+  "sin": {
     "PROPER_NAME": "Sin",
     "NAMES": [
       "sin"
     ],
     "DESCRIPTION": "Has no effect alone. Some cards use it to empower their effects."
   },
-  {
+  "bleed": {
     "PROPER_NAME": "Bleed",
     "NAMES": [
       "bleed",
@@ -64,11 +80,12 @@
     ],
     "DESCRIPTION": "At end of targets turn, a third of bleed (rounded up) and that much hp is lost."
   },
-  {
+  "infection": {
     "PROPER_NAME": "Infection",
     "NAMES": [
-      "infection"
+      "infection",
+      "infected"
     ],
     "DESCRIPTION": "When attacking, reduce damage by up to infection amount. at end of turn, lose infection equal to power of highest attack reduced"
   }
-]
+}

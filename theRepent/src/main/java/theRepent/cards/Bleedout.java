@@ -12,7 +12,7 @@ import java.util.Collections;
 
 import static theRepent.RepentMod.makeCardPath;
 
-public class Bleedout extends AbstractDynamicCard {
+public class Bleedout extends PowerConditionalCard {
 
     // TEXT DECLARATION
 
@@ -28,6 +28,7 @@ public class Bleedout extends AbstractDynamicCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
+    private static final String CONDITIONAL_POWER_ID = BleedPower.POWER_ID;
 
     private static final int COST = 1;
     private static final int UPGRADED_COST = 0;
@@ -36,7 +37,7 @@ public class Bleedout extends AbstractDynamicCard {
 
 
     public Bleedout() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, CONDITIONAL_POWER_ID);
     }
 
 

@@ -33,7 +33,6 @@ public class QuickenDeath extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 2;
-    private static final int UPGRADED_COST = 2;
 
     private static final int TRIGGERS = 2;
     private static final int UPGRADE_PLUS_TRIGGERS = 1;
@@ -65,7 +64,6 @@ public class QuickenDeath extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_TRIGGERS);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

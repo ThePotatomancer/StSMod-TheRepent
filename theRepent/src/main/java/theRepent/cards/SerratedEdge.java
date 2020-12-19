@@ -28,7 +28,6 @@ public class SerratedEdge extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
 
     // /STAT DECLARATION/
 
@@ -48,7 +47,6 @@ public class SerratedEdge extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
             isInnate = true;
             initializeDescription();
         }

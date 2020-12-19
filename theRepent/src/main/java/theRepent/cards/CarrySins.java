@@ -14,7 +14,7 @@ import theRepent.powers.SinPower;
 
 import static theRepent.RepentMod.makeCardPath;
 
-public class CarrySins extends AbstractDynamicCard {
+public class CarrySins extends PowerConditionalCard {
 
     // TEXT DECLARATION
 
@@ -30,15 +30,14 @@ public class CarrySins extends AbstractDynamicCard {
     private static final CardTarget TARGET = CardTarget.SELF_AND_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
+    public static final String CONDITIONAL_POWER_ID = SinPower.POWER_ID;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
 
     // /STAT DECLARATION/
 
-
     public CarrySins() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, CONDITIONAL_POWER_ID);
         retain = false;
     }
 
@@ -57,45 +56,11 @@ public class CarrySins extends AbstractDynamicCard {
         );
     }
 
-    public boolean cardPlayable(AbstractMonster m) {
-        if (m != null && m.hasPower(SinPower.POWER_ID)) {
-            return super.cardPlayable(m);
-        }
-        else {
-            this.cantUseMessage = null;
-            return false;
-        }
-    }
-
-    @Override
-    public boolean canPlay(AbstractCard card) {
-        return true;
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean anyMonsterHasSin = false;
-        for(final AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (monster.hasPower(SinPower.POWER_ID)) {
-                anyMonsterHasSin = true;
-                break;
-            }
-        }
-
-        if (anyMonsterHasSin) {
-            return super.canUse(p, m);
-        }
-        else {
-            return false;
-        }
-    }
-
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
             retain = true;
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

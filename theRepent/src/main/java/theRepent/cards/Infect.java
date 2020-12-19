@@ -14,7 +14,7 @@ import theRepent.powers.InfectionPower;
 
 import static theRepent.RepentMod.makeCardPath;
 
-public class Infect extends AbstractDynamicCard {
+public class Infect extends PowerConditionalCard {
 
     // TEXT DECLARATION
 
@@ -30,6 +30,7 @@ public class Infect extends AbstractDynamicCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
+    public static final String CONDITIONAL_POWER_ID = BleedPower.POWER_ID;
 
     private static final int COST = 1;
     private static final int UPGRADED_COST = 0;
@@ -38,7 +39,7 @@ public class Infect extends AbstractDynamicCard {
 
 
     public Infect() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, CONDITIONAL_POWER_ID);
     }
 
     @Override
@@ -49,40 +50,6 @@ public class Infect extends AbstractDynamicCard {
                 new ApplyPowerAction(m, p, new InfectionPower(m, p, loss)));
         AbstractDungeon.actionManager.addToBottom(
                 new ReducePowerAction(m, p, bleed, loss));
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m) {
-        if (m != null && m.hasPower(BleedPower.POWER_ID)) {
-            return super.cardPlayable(m);
-        }
-        else {
-            this.cantUseMessage = null;
-            return false;
-        }
-    }
-
-    @Override
-    public boolean canPlay(AbstractCard card) {
-        return true;
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean anyMonsterHasBleed = false;
-        for(final AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (monster.hasPower(BleedPower.POWER_ID)) {
-                anyMonsterHasBleed = true;
-                break;
-            }
-        }
-
-        if (anyMonsterHasBleed) {
-            return super.canUse(p, m);
-        }
-        else {
-            return false;
-        }
     }
 
     @Override

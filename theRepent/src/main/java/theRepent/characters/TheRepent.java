@@ -63,14 +63,17 @@ public class TheRepent extends CustomPlayer {
     public static final int MAX_HP = 75;
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 3;
+    public static final int ORB_SLOTS = 0;
+
+    public static final int STARTING_STRIKES = 4;
+    public static final int STARTING_DEFENDS = 5;
 
     // =============== /BASE STATS/ =================
 
 
     // =============== STRINGS =================
 
-    private static final String ID = makeID("DefaultCharacter");
+    private static final String ID = makeID("RepentCharacter");
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
@@ -154,12 +157,14 @@ public class TheRepent extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
+        for (int i = 0; i < STARTING_STRIKES; i++) {
+            retVal.add(Stab.ID);
+        }
+        for (int i = 0; i < STARTING_DEFENDS; i++) {
+            retVal.add(Parry.ID);
+        }
         retVal.add(MedicalPoisoning.ID);
-        retVal.add(Pinprick.ID);
-        retVal.add(Parry.ID);
-        retVal.add(Infect.ID);
         retVal.add(Lacerate.ID);
-        retVal.add(DrawDarts.ID);
         return retVal;
     }
 
@@ -192,7 +197,7 @@ public class TheRepent extends CustomPlayer {
     // Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
     @Override
     public int getAscensionMaxHPLoss() {
-        return 0;
+        return 4;
     }
 
     // Should return the card color enum to be associated with your character.
@@ -223,7 +228,7 @@ public class TheRepent extends CustomPlayer {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new Stab();
+        return new Lacerate();
     }
 
     // The class name as it appears next to your player name in-game
@@ -262,17 +267,11 @@ public class TheRepent extends CustomPlayer {
                 AbstractGameAction.AttackEffect.BLUNT_HEAVY};
     }
 
-    // Should return a string containing what text is shown when your character is
-    // about to attack the heart. For example, the defect is "NL You charge your
-    // core to its maximum..."
     @Override
     public String getSpireHeartText() {
         return TEXT[1];
     }
 
-    // The vampire events refer to the base game characters as "brother", "sister",
-    // and "broken one" respectively.This method should return a String containing
-    // the full text that will be displayed as the first screen of the vampires event.
     @Override
     public String getVampireText() {
         return TEXT[2];

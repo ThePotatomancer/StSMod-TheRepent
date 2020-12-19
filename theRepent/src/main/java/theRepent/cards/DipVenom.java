@@ -29,7 +29,6 @@ public class DipVenom extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
 
     private static final int ENVENOM = 2;
     private static final int UPGRADE_PLUS_ENVENOM = 1;
@@ -56,7 +55,6 @@ public class DipVenom extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_ENVENOM);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

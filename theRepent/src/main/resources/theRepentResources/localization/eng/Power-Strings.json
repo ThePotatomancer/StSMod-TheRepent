@@ -1,54 +1,103 @@
 {
-        "theRepent:CausticAcidPower": {
-                "NAME": "Caustic Acid",
-                "DESCRIPTIONS": ["Deal #b", "hp damage for each point of acid not spent on reducing block. increase acid decay to 2 per turn."]
-        },
-        "theRepent:SerratedEdgePower": {
-                "NAME": "Serrated Edge",
-                "DESCRIPTIONS": ["Apply bleed equal to #b", "of unblocked damage dealt. Maxes out at 99%"]
-        },
-        "theRepent:Acid": {
-                "NAME": "Acid",
-                "DESCRIPTIONS": ["Remove #b", "% block at the end of turn."]
-        },
-        "theRepent:ArterialBleedingPower": {
-                "NAME": "Arterial Bleeding",
-                "DESCRIPTIONS": ["Converts bleed decay to growth, will be removed if bleed is gone. Turn based."]
-        },
-        "theRepent:Redemption": {
-                "NAME": "Redemption",
-                "DESCRIPTIONS": ["Remove #b", " hp at start of turn"]
-        },
-        "theRepent:DipVenomPower": {
-                "NAME": "Dip Venom",
-                "DESCRIPTIONS": ["Remove #b", " envenom at the end of the turn."]
-        },
-        "theRepent:MercyPower": {
-                "NAME": "Mercy",
-                "DESCRIPTIONS": ["When healing another, gain half of the effective heal amount (rounded down) as virtue."]
-        },
-        "theRepent:TrespassPower": {
-                "NAME": "Trespass",
-                "DESCRIPTIONS": ["Apply sin to attacker equal to damage blocked. Turn based."]
-        },
-        "theRepent:Virtue": {
-                "NAME": "Virtue",
-                "DESCRIPTIONS": ["Has no effect alone. Some cards use it to empower their effects."]
-        },
-        "theRepent:Sin": {
-                "NAME": "Sin",
-                "DESCRIPTIONS": ["Has no effect alone. Some cards use it to empower their effects."]
-        },
-        "theRepent:WeepingShadowsPower": {
-                "NAME": "Weeping Shadows",
-                "DESCRIPTIONS": ["When you apply a debuff, gain #b", " block."]
-        },
-        "theRepent:Bleed": {
-                "NAME": "Bleed",
-                "DESCRIPTIONS": ["At start of turn, a third of bleed (rounded up) is that much hp is lost."]
-        },
-        "theRepent:Infection": {
-                "NAME": "Infection",
-                "DESCRIPTIONS": ["When attacking, reduce damage by up to infection amount. at end of turn, lose infection equal to power of highest attack reduced."]
-        }
+  "theRepent:SpreadingInfectionPower": {
+    "NAME": "Spreading Infection",
+    "DESCRIPTIONS": ["Apply infection when bleed triggers, equal to bleed decay."]
+  },
+  "theRepent:StigmataPower": {
+    "NAME": "Stigmata",
+    "DESCRIPTIONS": ["You gain #b", " virtue for every hp lost."]
+  },
+  "theRepent:ParalyticPoisonPower": {
+    "NAME": "Paralytic Poison",
+    "DESCRIPTIONS": [
+      "Remove #b",
+      " strength and dexterity. NL Remove extra #r",
+      " poison at end of turn."
+    ]
+  },
+  "theRepent:CausticAcidPower": {
+    "NAME": "Caustic Acid",
+    "DESCRIPTIONS": [
+      "Deal #b",
+      " hp damage for each point of acid not spent on reducing block. NL Increase acid decay to #b",
+      " per turn."
+    ]
+  },
+  "theRepent:SerratedEdgePower": {
+    "NAME": "Serrated Edge",
+    "DESCRIPTIONS": [
+      "Apply bleed equal to #b",
+      "% of unblocked damage dealt. NL Maxes out at 99%."
+    ]
+  },
+  "theRepent:Acid": {
+    "NAME": "Acid",
+    "DESCRIPTIONS": [
+      "Remove #b",
+      " block at the end of turn."
+    ]
+  },
+  "theRepent:ArterialBleedingPower": {
+    "NAME": "Arterial Bleeding",
+    "DESCRIPTIONS": [
+      "Converts bleed decay to growth. NL Turn based."
+    ]
+  },
+  "theRepent:Redemption": {
+    "NAME": "Redemption",
+    "DESCRIPTIONS": [
+      "Remove #b",
+      " hp at start of turn"
+    ]
+  },
+  "theRepent:DipVenomPower": {
+    "NAME": "Dip Venom",
+    "DESCRIPTIONS": [
+      "Remove #b",
+      " envenom at the end of the turn."
+    ]
+  },
+  "theRepent:MercyPower": {
+    "NAME": "Mercy",
+    "DESCRIPTIONS": [
+      "When healing another, gain half of the effective heal amount (rounded down) as virtue."
+    ]
+  },
+  "theRepent:TrespassPower": {
+    "NAME": "Trespass",
+    "DESCRIPTIONS": [
+      "Apply sin to attacker equal to damage blocked. NL Turn based."
+    ]
+  },
+  "theRepent:Virtue": {
+    "NAME": "Virtue",
+    "DESCRIPTIONS": [
+      "Has no effect alone. NL Some cards use it to empower their effects."
+    ]
+  },
+  "theRepent:Sin": {
+    "NAME": "Sin",
+    "DESCRIPTIONS": [
+      "Has no effect alone. NL Some cards use it to empower their effects."
+    ]
+  },
+  "theRepent:WeepingShadowsPower": {
+    "NAME": "Weeping Shadows",
+    "DESCRIPTIONS": [
+      "When you apply a debuff, gain #b",
+      " block."
+    ]
+  },
+  "theRepent:Bleed": {
+    "NAME": "Bleed",
+    "DESCRIPTIONS": [
+      "At start of turn, lose a third of bleed (rounded up). NL Lose that much hp."
+    ]
+  },
+  "theRepent:Infection": {
+    "NAME": "Infection",
+    "DESCRIPTIONS": [
+      "When attacking, reduce damage by up to infection amount. NL At end of turn, lose infection equal to power of highest attack reduced."
+    ]
+  }
 }

@@ -29,7 +29,6 @@ public class Trespass extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 2;
-    private static final int UPGRADED_COST = 2;
 
     private static final int BLOCK = 14;
     private static final int UPGRADE_PLUS_BLOCK = 4;
@@ -57,7 +56,6 @@ public class Trespass extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

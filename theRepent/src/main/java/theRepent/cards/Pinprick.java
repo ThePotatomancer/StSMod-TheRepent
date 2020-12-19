@@ -31,7 +31,6 @@ public class Pinprick extends AbstractDynamicCard {
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
 
     private static final int DAMAGE = 1;
 
@@ -71,7 +70,6 @@ public class Pinprick extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
             upgradeMagicNumber(UPGRADE_PLUS_BLEED);
             upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_POISON);
             initializeDescription();

@@ -50,6 +50,7 @@ public class Mercy extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeBaseCost(UPGRADED_COST);
+            isInnate = true;
             initializeDescription();
         }
     }

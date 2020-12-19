@@ -40,7 +40,7 @@ public class CausticAcidPower extends AbstractPower implements CloneablePowerInt
         this.amount = amount;
         this.source = source;
 
-        type = PowerType.BUFF;
+        type = PowerType.DEBUFF;
         isTurnBased = false;
 
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
@@ -65,7 +65,7 @@ public class CausticAcidPower extends AbstractPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

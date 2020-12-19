@@ -52,7 +52,7 @@ public class RedemptionPower extends AbstractPower implements CloneablePowerInte
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
+    public void atStartOfTurn() {
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
                 !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             this.addToBot(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.HP_LOSS)));

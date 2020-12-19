@@ -1,13 +1,13 @@
 {
-  "theRepent:DefaultCharacter": {
+  "theRepent:RepentCharacter": {
     "NAMES": [
       "The Repent",
       "the Repent"
     ],
     "TEXT": [
-      "THE_DEFAULT exists and is valid. THE_DEFAULT wishes to T o uuuch# NL Second placeholder line of description text.",
-      "NL You TOUCH the heart.",
-      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~basic~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+      "A saint with a dark past. NL He is ready to employ his dark powers for the final time, to purify the ultimate evil: NL the spire.",
+      "NL You destroy the heart, with the last curse you'll ever cast.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~regretful~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
     ]
   }
 }

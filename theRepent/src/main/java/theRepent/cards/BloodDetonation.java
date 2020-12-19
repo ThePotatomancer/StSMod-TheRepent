@@ -13,7 +13,7 @@ import theRepent.powers.BleedPower;
 
 import static theRepent.RepentMod.makeCardPath;
 
-public class BloodDetonation extends AbstractDynamicCard {
+public class BloodDetonation extends PowerConditionalCard {
 
     // TEXT DECLARATION
 
@@ -29,50 +29,28 @@ public class BloodDetonation extends AbstractDynamicCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheRepent.Enums.COLOR_PURPLE;
+    private static final String CONDITIONAL_POWER_ID = BleedPower.POWER_ID;
 
     private static final int COST = 1;
-    private static final int UPGRADED_COST = 1;
+    private static final int DAMAGE = 2;
+    private static final int UPGRADE_PLUS_DAMAGE = 3;
 
     // /STAT DECLARATION/
 
 
     public BloodDetonation() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m) {
-        if (m != null && m.hasPower(BleedPower.POWER_ID)) {
-            return super.cardPlayable(m);
-        }
-        else {
-            this.cantUseMessage = null;
-            return false;
-        }
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean anyMonsterHasBleed = false;
-        for(final AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (monster.hasPower(BleedPower.POWER_ID)) {
-                anyMonsterHasBleed = true;
-                break;
-            }
-        }
-
-        if (anyMonsterHasBleed) {
-            return super.canUse(p, m);
-        }
-        else {
-            return false;
-        }
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, CONDITIONAL_POWER_ID);
+        baseDamage = DAMAGE;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractPower power = m.getPower(BleedPower.POWER_ID);
         int amount = power.amount / 2;
+
+        if (upgraded) {
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)));
+        }
         AbstractDungeon.actionManager.addToBottom(
                 new DamageAction(m, new DamageInfo(p, amount, damageTypeForTurn)));
         AbstractDungeon.actionManager.addToBottom(
@@ -84,7 +62,7 @@ public class BloodDetonation extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
+            upgradeDamage(UPGRADE_PLUS_DAMAGE);
             initializeDescription();
         }
     }

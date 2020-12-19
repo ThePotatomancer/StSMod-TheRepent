@@ -9,11 +9,9 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import theRepent.util.Keywords;
 import theRepent.RepentMod;
-import theRepent.actions.SetMaxHealthAction;
 import theRepent.powers.AcidPower;
 
 public class CorrosiveAcidPotion extends AbstractPotion {
@@ -21,7 +19,7 @@ public class CorrosiveAcidPotion extends AbstractPotion {
 
     public static final String POTION_ID = RepentMod.makeID("PlaceholderPotion");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
-    
+
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
@@ -34,10 +32,8 @@ public class CorrosiveAcidPotion extends AbstractPotion {
         description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
 
         isThrown = false;
-        
-        // Initialize the on-hover name + description
         tips.add(new PowerTip(name, description));
-        
+        tips.add(Keywords.makePowerTip(Keywords.ACID));
     }
 
     @Override
