@@ -1,0 +1,10 @@
+{
+  "theRepent:PriceOfMistakes": {
+    "NAME": "Price of Mistakes",
+    "DESCRIPTION": ["Lose #r", " #ystrength at the start of each combat."]
+  },
+  "theRepent:PriceOfRegrets": {
+    "NAME": "Price of Regrets",
+    "DESCRIPTION": ["Multiply all enemy hp by #r", "."]
+  }
+}

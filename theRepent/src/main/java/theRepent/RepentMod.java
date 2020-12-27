@@ -11,15 +11,22 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import theRepent.blights.PriceOfRegrets;
+import theRepent.blights.PriceOfMistakes;
 import theRepent.characters.TheRepent;
+import theRepent.patches.GetBlightPatch;
 import theRepent.potions.CorrosiveAcidPotion;
+import theRepent.relics.RustedAmulet;
 import theRepent.relics.RustedLocket;
+import theRepent.util.CharacterSelectionScreen;
 import theRepent.util.IDCheckDontTouchPls;
 import theRepent.util.Keywords;
 import theRepent.util.TextureLoader;
@@ -30,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -49,18 +57,17 @@ public class RepentMod implements
 
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties theRepentDefaultSettings = new Properties();
-    public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
-    public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
+    public static final String ENABLE_ALT_RELIC_SETTINGS = "enableAltRelic";
+    public static boolean enableAltRelic = true; // The boolean we'll be setting on/off (true/false)
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Repent";
     private static final String AUTHOR = "Potatomancer";
-    private static final String DESCRIPTION = "A character based around heavy debuff manipulation.";
+    private static final String DESCRIPTION = "A character based around (very) heavy debuff manipulation.";
     
     // =============== INPUT TEXTURE LOCATION =================
     
     // Colors (RGB)
-    // Character Color
     public static final Color REPENT_PURPLE = CardHelper.getColor(54.0f, 0.0f, 100.0f);
     
     // Potion Colors in RGB
@@ -113,16 +120,20 @@ public class RepentMod implements
         return getModID() + "Resources/images/relics/outline/" + resourcePath;
     }
     
-    public static String makeOrbPath(String resourcePath) {
-        return getModID() + "Resources/images/orbs/" + resourcePath;
-    }
-    
     public static String makePowerPath(String resourcePath) {
         return getModID() + "Resources/images/powers/" + resourcePath;
     }
     
     public static String makeEventPath(String resourcePath) {
         return getModID() + "Resources/images/events/" + resourcePath;
+    }
+
+    public static String makeBlightPath(String resourcePath) {
+        return getModID() + "Resources/images/blights/" + resourcePath;
+    }
+
+    public static String makeBlightOutlinePath(String resourcePath) {
+        return getModID() + "Resources/images/blights/outline/" + resourcePath;
     }
     
     // =============== /MAKE IMAGE PATHS/ =================
@@ -153,14 +164,13 @@ public class RepentMod implements
         
         
         logger.info("Adding mod settings");
-        // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
-        theRepentDefaultSettings.setProperty(ENABLE_PLACEHOLDER_SETTINGS, "FALSE"); // This is the default setting. It's actually set...
+        theRepentDefaultSettings.setProperty(ENABLE_ALT_RELIC_SETTINGS, "FALSE"); // Default settings
         try {
-            SpireConfig config = new SpireConfig("theRepent", "theRepentConfig", theRepentDefaultSettings); // ...right here
+            SpireConfig config = new SpireConfig("theRepent", "theRepentConfig", theRepentDefaultSettings); // Set default settings
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enablePlaceholder = config.getBool(ENABLE_PLACEHOLDER_SETTINGS);
+            config.load();
+            enableAltRelic = config.getBool(ENABLE_ALT_RELIC_SETTINGS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -250,18 +260,19 @@ public class RepentMod implements
         ModPanel settingsPanel = new ModPanel();
         
         // Create the on/off button:
-        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("This is the text which goes next to the checkbox.",
+        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("Enable alternative starting relic.",
                 350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enablePlaceholder, // Boolean it uses
+                enableAltRelic, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {},
                 (button) -> { // The actual button:
             
-            enablePlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
+            enableAltRelic = button.enabled; // The boolean true/false will be whether the button is enabled or not
             try {
                 // And based on that boolean, set the settings and save them
                 SpireConfig config = new SpireConfig("theRepent", "theRepentConfig", theRepentDefaultSettings);
-                config.setBool(ENABLE_PLACEHOLDER_SETTINGS, enablePlaceholder);
+                config.setBool(ENABLE_ALT_RELIC_SETTINGS, enableAltRelic);
+                CharacterSelectionScreen.updateCharacter(TheRepent.Enums.THE_REPENT);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -291,7 +302,7 @@ public class RepentMod implements
         // just remove the player class at the end
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(CorrosiveAcidPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, CorrosiveAcidPotion.POTION_ID, TheRepent.Enums.THE_REPENT);
-        
+
         logger.info("Done editing potions");
     }
     
@@ -313,6 +324,10 @@ public class RepentMod implements
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
         BaseMod.addRelicToCustomPool(new RustedLocket(), TheRepent.Enums.COLOR_PURPLE);
+        BaseMod.addRelicToCustomPool(new RustedAmulet(), TheRepent.Enums.COLOR_PURPLE);
+
+        GetBlightPatch.registeredBlightIds.put(PriceOfMistakes.ID, new PriceOfMistakes());
+        GetBlightPatch.registeredBlightIds.put(PriceOfRegrets.ID, new PriceOfRegrets());
 
         logger.info("Done adding relics!");
     }
@@ -338,7 +353,6 @@ public class RepentMod implements
 
         // The ID for this function isn't actually your modid as used for prefixes/by the getModID() method.
         // It's the mod id you give MTS in ModTheSpire.json - by default your artifact ID in your pom.xml
-
         new AutoAdd("theRepent")
             .packageFilter("theRepent.cards")
             .setDefaultSeen(true)
@@ -392,34 +406,39 @@ public class RepentMod implements
     @Override
     public void receiveEditStrings() {
         logger.info("Beginning to edit strings for mod with ID: " + getModID());
+        loadLanguageAsNeeded();
         
         // CardStrings
         BaseMod.loadCustomStringsFile(CardStrings.class,
-                getModID() + "Resources/localization/eng/Card-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Card-Strings.json");
         
         // PowerStrings
         BaseMod.loadCustomStringsFile(PowerStrings.class,
-                getModID() + "Resources/localization/eng/Power-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Power-Strings.json");
         
         // RelicStrings
         BaseMod.loadCustomStringsFile(RelicStrings.class,
-                getModID() + "Resources/localization/eng/Relic-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Relic-Strings.json");
         
         // Event Strings
         BaseMod.loadCustomStringsFile(EventStrings.class,
-                getModID() + "Resources/localization/eng/Event-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Event-Strings.json");
         
         // PotionStrings
         BaseMod.loadCustomStringsFile(PotionStrings.class,
-                getModID() + "Resources/localization/eng/Potion-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Potion-Strings.json");
         
         // CharacterStrings
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
-                getModID() + "Resources/localization/eng/Character-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Character-Strings.json");
         
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
-                getModID() + "Resources/localization/eng/Orb-Strings.json");
+                getModID() + "Resources/localization/" + localLanguage + "Orb-Strings.json");
+
+        // BlightString
+        BaseMod.loadCustomStringsFile(BlightStrings.class,
+                getModID() + "Resources/localization/" + localLanguage + "Blight-Strings.json");
         
         logger.info("Done editing strings");
     }

@@ -1,4 +1,8 @@
 {
+  "theRepent:DelayedInfection": {
+    "NAME": "Delayed Infection",
+    "DESCRIPTIONS": ["Apply #b", " infection at the end of the round."]
+  },
   "theRepent:SpreadingInfectionPower": {
     "NAME": "Spreading Infection",
     "DESCRIPTIONS": ["Apply infection when bleed triggers, equal to bleed decay."]

@@ -1,4 +1,8 @@
 {
+  "theRepent:Fester": {
+    "NAME": "Fester",
+    "DESCRIPTION": "Apply !M! therepent:infection at the end of the round."
+  },
   "theRepent:SpreadingInfection": {
     "NAME": "Spreading Infection",
     "DESCRIPTION": "Apply therepent:infection equal to therepent:bleed decay when therepent:bleed therepent:triggers for one turn.",

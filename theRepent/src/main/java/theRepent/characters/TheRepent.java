@@ -23,6 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import theRepent.RepentMod;
 import theRepent.cards.*;
+import theRepent.relics.RustedAmulet;
 import theRepent.relics.RustedLocket;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import static theRepent.characters.TheRepent.Enums.COLOR_PURPLE;
 public class TheRepent extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(RepentMod.class.getName());
 
-    // =============== CHARACTER ENUmMERATORS =================
+    // =============== CHARACTER ENUMERATORS =================
     // These are enums for your Characters color (both general color and for the card library) as well as
     // an enum for the name of the player class - IRONCLAD, THE_SILENT, DEFECT, YOUR_CLASS ...
     // These are all necessary for creating a character. If you want to find out where and how exactly they are used
@@ -172,9 +173,14 @@ public class TheRepent extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(RustedLocket.ID);
-
-        UnlockTracker.markRelicAsSeen(RustedLocket.ID);
+        if (enableAltRelic) {
+            retVal.add(RustedAmulet.ID);
+            UnlockTracker.markRelicAsSeen(RustedAmulet.ID);
+        }
+        else {
+            retVal.add(RustedLocket.ID);
+            UnlockTracker.markRelicAsSeen(RustedLocket.ID);
+        }
 
         return retVal;
     }
@@ -277,4 +283,12 @@ public class TheRepent extends CustomPlayer {
         return TEXT[2];
     }
 
+    public void reinitialize() {
+        initializeClass(null,
+                THE_DEFAULT_SHOULDER_2,
+                THE_DEFAULT_SHOULDER_1,
+                THE_DEFAULT_CORPSE,
+                getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN));
+
+    }
 }

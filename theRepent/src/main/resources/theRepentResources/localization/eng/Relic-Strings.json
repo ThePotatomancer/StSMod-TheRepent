@@ -1,10 +1,19 @@
 {
+  "theRepent:RustedAmulet": {
+    "NAME": "Rusted Amulet",
+    "FLAVOR": "A memoir for the mistakes that lead you here.",
+    "DESCRIPTIONS": [
+      "Gain blight that reduces #ystrength by #r",
+      " at the start of each combat. NL You gain #b",
+      "% of your max hp at end of combat."
+    ]
+  },
   "theRepent:RustedLocket": {
     "NAME": "Rusted Locket",
     "FLAVOR": "A memoir for your regrets.",
     "DESCRIPTIONS": [
-      "Multiply all enemy hp by #r",
-      ". You gain #b",
+      "Gain blight that multiplies all enemy hp by #r",
+      "NL You gain #b",
       "% of your max hp at end of combat."
     ]
   }
